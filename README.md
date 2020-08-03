@@ -37,6 +37,8 @@ Connect the ESP to your machine and use the Arduino-IDE to compile and upload us
 
 After the first deployment to your ESP, the ESP will reboot and search for a known SSID. When the default SSID "YourSSID" is not found, the ESP will revert to SoftAP-mode. The default name of that SSID will be "Magnatic-unconfigured-[MAC-ADDRESS]" with a default password "espadmin".
 
+Connect your laptop, phone or tablet to the initial softAP SSID.
+
 Use WinSCP to upload checkFirmware.js and saveSetting.js to the root of the ESP. Session settings for WinSCP:
 * File protocol: FTP
 * Encryption: No encryption
@@ -46,13 +48,13 @@ Use WinSCP to upload checkFirmware.js and saveSetting.js to the root of the ESP.
 * Password: esp
 
 ## Initial configuration
-Connect your laptop, phone or tablet to the initial softAP SSID and go to the configuration page "http://192.168.4.1/config". The default username and password are "esp" and "esp".
+Go to the configuration page "http://192.168.4.1/config". The default username and password are "esp" and "esp".
 
 Switch to the Superuser-page and change the configuration to match your SSID and the correct password. The ESP will reboot after setting the password.
 
 Reconnect your laptop, phone or tablet to your own SSID.
 
-Use the Arduino-IDE Serial monitor to find the IP-address assigned to the ESP. Baudrate is 115200.
+Use the Arduino-IDE Serial monitor to find the IP-address assigned to the ESP. Baudrate is 115200. You can also find the device-IP by looking in Tools-->Port in the Arduino-IDE. If you have a mDSN-client like Bonjour browser, you can also use that to find the IP-address.
 
 Connect to `http://<esp-IP>/config` and go to the Superuser-page again. You'll find much more to configure. It is highly recommended to change the Device name and all passwords!
 Go to the Administrator-page to disable all services you don't need.
