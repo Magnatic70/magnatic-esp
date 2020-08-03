@@ -135,12 +135,12 @@ The value of the exposed variable can be shown by using `&&<type>.<variableName>
 
 ### Optional HTML-lines
 One or more HTML-lines can be made optional based on the value of an exposed bool
-`
+```html
 <!OPTION &&BO.locked&&>
 This is optional HTML.
 ....
 <!ENDOPTION>
-`
+```
 If the value of the exposed variable is true then the optional HTML-lines are shown. Otherwise they are not sent to the http-client.
 
 # Automatic updates
