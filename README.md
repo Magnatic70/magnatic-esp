@@ -7,7 +7,7 @@ Turn your ESP into a light-weight server with the following functionalities:
 * Separate configuration pages for users, super-users and administrators, all protected by basic-authentication
 * OTA (automatic, web-based and/or ArduinoOTA)
 * mDNS-publication of name and OTA-service
-* Light-weight template-engine that allows you to use configuration-items as variables and easily expose c++-variables for usage in templates
+* Light-weight template-engine that allows you to use configuration-items as variables, easily expose c++-variables for usage in templates and make HTML-lines optional
 
 For deployment on an ESP8266 you'll need the following libraries:
 * ESP8266WiFi
