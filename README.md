@@ -97,17 +97,17 @@ Some configuration items are hidden from the configuration pages and can only be
 Use the function addConfigParameter in your code. Be sure to use the espSetup()-function first to initalize the library!
 Syntax: addConfigParameter("configParameterName","Description for configuration page","Default value", allowedFrom, rebootNeeded, configLevel)
 * allowFrom
-** AccessPointConfigPage: This configuration item will only be shown when the device is in softAP-mode
-** MainConfigPage: This configuration item will only be shown when the device is in normal mode
-** AllConfigPages: This configuration item will be shown in both softAP and normal mode
+  * AccessPointConfigPage: This configuration item will only be shown when the device is in softAP-mode
+  * MainConfigPage: This configuration item will only be shown when the device is in normal mode
+  * AllConfigPages: This configuration item will be shown in both softAP and normal mode
 * rebootNeeded
-** true: The device will reboot after changing this configuration item
-** false: The device will not reboot after changing this configuration item
+  * true: The device will reboot after changing this configuration item
+  * false: The device will not reboot after changing this configuration item
 * configLevel
-** 1: User
-** 2: Superuser
-** 3: Administrator
-** 4: Hidden
+  * 1: User
+  * 2: Superuser
+  * 3: Administrator
+  * 4: Hidden
 
 ## Using template-files
 Template-files have the extension .hti and are for the most part normal HTML-files. Using the .hti-extension triggers the ESP-webserver in interpreting HTML-lines before serving them.
@@ -119,15 +119,15 @@ The current value of configuration items can be shown by using &&config.[configI
 Variables can be exposed to the template-engine be using the function addExposedVariable.
 Syntax: addExposedVariable("variable name in template",type,pointer)
 * type
-** "U": Unsigned long
-** "L": Long
-** "I": Int
-** "F": Float
-** "D": Double
-** "C": Char
-** "B": Byte
-** "BO": bool
-** "S": String
+  * "U": Unsigned long
+  * "L": Long
+  * "I": Int
+  * "F": Float
+  * "D": Double
+  * "C": Char
+  * "B": Byte
+  * "BO": bool
+  * "S": String
 Example: addExposedVariables("wifiIPAddress", "S" , (void*)&wifiIPAddress)
 
 The value of the exposed variable can be shown by using &&[type].[variableName]&&. &&S.wifiIPAddress&& will show the IP-address of the ESP.
