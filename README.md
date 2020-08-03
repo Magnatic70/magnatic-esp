@@ -145,6 +145,8 @@ This is optional HTML.
 ```
 If the value of the exposed variable is true then the optional HTML-lines are shown. Otherwise they are not sent to the http-client.
 
+Nesting of options is not supported.
+
 # Automatic updates
 <TBD>
   
