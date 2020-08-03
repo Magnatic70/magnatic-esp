@@ -89,6 +89,8 @@ Go to the Administrator-page to disable all services you don't need.
 *	[magnaticDeviceServerURL] URL of server providing firmware updates: The base-URL of the webserver that provides OTA-updates. Default=http://192.168.1.180/magnaticDevices
 *	[automaticUpdateCheckInterval] Interval for check of new firmware in hours. Default=24
 *	[registerDevice] Register device on boot (n=no, other=url): If enabled the device will send an http-request with some device information to this URL. Default=http://192.168.1.180:65023/domoticz-events/register-magnatic-device.pl
+*	[httpFileServerURL] URL of http file server. Default=http://192.168.1.180/magnaticDevices
+*	[httpDebugServerURL] URL of http debug server. Default=http://192.168.1.180:65023/rpss/rpss_service.pl?what=espdebug&line=
 
 ### Hidden
 Some configuration items are hidden from the configuration pages and can only be changed in the code or in the settings.txt
@@ -117,7 +119,7 @@ Syntax: addConfigParameter("configParameterName","Description for configuration 
 Template-files have the extension .hti and are for the most part normal HTML-files. Using the .hti-extension triggers the ESP-webserver in interpreting HTML-lines before serving them.
 
 ### Configuration item values
-The current value of configuration items can be shown by using `&&config.<configItemName>&&`. `&&config.DeviceName&&` will show the name of the device.
+The current value of configuration items can be shown by using `&&config.<configItemName>&&`. `&&config.DeviceName&&` will show the name of the device. See chapter "Default configuration items" for the bracketted names of the default configuration items.
 
 ### Exposed variables
 Variables can be exposed to the template-engine be using the function addExposedVariable.
@@ -162,62 +164,69 @@ There is some housekeeping to be done when using this library. This is all done 
 ## URLEncode
 URLEncode encodes a string for safe use as an URL
 
-String URLEncode(String str)
+`String URLEncode(String str)`
 
-##readStringFromSettingFile
+## readStringFromSettingFile
 readStringFromSettingFile retrieves a configuration value from the setting file
 
-String readStringFromSettingFile(String configName)
+`String readStringFromSettingFile(String configName)`
 
 ## readCharArrayFromSettingFile
 readCharArrayFromSettingFile retrieves a character array from the setting file
 
-void readCharArrayFromSettingFile(char (&array)[32], String configName)
+`void readCharArrayFromSettingFile(char (&array)[32], String configName)`
 
 ## readFloatFromSettingFile
-float readFloatFromSettingFile(String configName)
+`float readFloatFromSettingFile(String configName)`
 
 ## readIntFromSettingFile
-int readIntFromSettingFile(String configName)
+`int readIntFromSettingFile(String configName)`
 
-##writeStringToSettingFile
-void writeStringToSettingFile(String settingName, String settingValue)
+## writeStringToSettingFile
+`void writeStringToSettingFile(String settingName, String settingValue)`
 
 ## writeToLog
 The device has a local logfile esp.log. You can add lines to it with this function. The log is rolled over when it grows bigger than 16 kB. One previous log file is retained as esp.log.1
 
-void writeToLog(String line)
+`void writeToLog(String line)`
 
 ## serverArgument
 When handling a http-request received by the ESP this function can be used to directly access an argument passed to the server.
 
 For example: The GET-request received is /config?paramName=test&paramValue=testValue (POST is also supported)
 
-writeToLog(serverArgument("test")+"="+serverArgument("testValue"))
+`writeToLog(serverArgument("test")+"="+serverArgument("testValue"))`
 
 ## daysInMonth
 Returns the number of days in a given month.
 
-int daysInMonth(int month, int year)
+`int daysInMonth(int month, int year)`
 
 ## leapYear
 Returns whether or not a year is a leap year.
 
-bool leapYear(int year)
+`bool leapYear(int year)`
 
 ## getPayLoadFromHTTPRequest
 Performs a http-request to the URL provided and returns the result. If an error occurs it returns the errorcode and possible server response.
 
-String getPayloadFromHttpRequest(String url)
+`String getPayloadFromHttpRequest(String url)`
 
 ## fuzzy
 When multiple devices are sending information with the same interval, this function can help spread the load.
 
-unsigned long fuzzy(unsigned long duration, unsigned long fuzz);
+`unsigned long fuzzy(unsigned long duration, unsigned long fuzz)`
 
 For example: fuzzy(10000,100) will return a random value between 9900 and 10100
 
 ## getFileFromServer
 Retrieves a file from a http-server and saves it to SPIFFS if the file-size provided differs from the file-size on SPIFFS.
 
-void getFileFromServer(String fileName, String serverPath, int fileSizeExpected)
+`void getFileFromServer(String fileName, String serverPath, int fileSizeExpected)`
+
+serverPath is prepended with configuration item "httpFileServerURL"
+
+## debugToServer
+Writes a debugline to the debug http-server-URL defined by the configuration item "httpDebugServerURL".
+
+void debugToServer(String line)
