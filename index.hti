@@ -1,0 +1,26 @@
+<html>
+	<body>
+		<table>
+			<tr>
+				<td>Device description:</td>
+				<td>&&S.magnaticDeviceDescription&&</td>
+			</tr>
+			<tr>
+				<td>Device type:</td>
+				<td>&&S.magnaticDeviceType&&</td>
+			</tr>
+			<tr>
+				<td>Device release:</td>
+				<td>&&I.magnaticDeviceRelease&&</td>
+			</tr>
+			<tr>
+				<td>Device name:</td>
+				<td>&&config.DeviceName&&</td>
+			</tr>
+		</table>
+		<p>
+		<a href="/config" target="config">Configuration page</a><br>
+		<a href="http://&&S.wifiIPAddress&&:8266/update" target="firmwareUpdate">Firmware update page</a><br>
+		<a href="&&S.firmwareWebserver&&/&&S.magnaticDeviceType&&" target="firmwareDownload">Download firmware</a><br>
+	</body>
+</html>
