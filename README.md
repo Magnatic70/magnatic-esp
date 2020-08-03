@@ -40,7 +40,7 @@ After the first deployment to your ESP, the ESP will reboot and search for a kno
 
 Connect your laptop, phone or tablet to the initial softAP SSID.
 
-Use WinSCP to upload checkFirmware.js and saveSetting.js to the root of the ESP. Session settings for WinSCP:
+Use WinSCP to upload index.hti, checkFirmware.js and saveSetting.js to the root of the ESP. Session settings for WinSCP:
 * File protocol: FTP
 * Encryption: No encryption
 * Host name: 192.168.4.1
