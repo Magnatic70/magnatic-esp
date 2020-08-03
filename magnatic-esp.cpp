@@ -31,7 +31,7 @@ String configLevelNames[3]={"User","Superuser","Administrator"};
 String magnaticDeviceType="undefined";
 String magnaticDeviceDescription="undefined";
 int magnaticDeviceRelease=999999;
-String magnaticDeviceServerURL="http://remote.magnatic.com/magnaticDevices";
+String magnaticDeviceServerURL;
 int magnaticDeviceTypeIndexFileSize=0;
 String wifiIPAddress;
 unsigned long nextFirmwareCheckTime=0;
@@ -79,9 +79,9 @@ String getPayloadFromHttpRequest(String url){
 	return payload;
 }
 
-void debugToServer(String line){ // Candidate for magnatic-esp8266
+void debugToServer(String line){
 	if(DebugToServer==1) {
-		getPayloadFromHttpRequest("http://192.168.1.180:65023/rpss/rpss_service.pl?what=espdebug&line="+URLEncode(line));
+		getPayloadFromHttpRequest(readStringFromSettingFile("httpDebugServerURL")+URLEncode(line));
 	}
 }
 
@@ -803,7 +803,7 @@ void getFileFromServer(String fileName, String serverPath, int fileSizeExpected)
 	}
 	if(fileSize!=fileSizeExpected){
 		// TBD: 404 error handling needed!
-		String payload=getPayloadFromHttpRequest("http://remote.magnatic.com/magnaticDevices"+serverPath+fileName);
+		String payload=getPayloadFromHttpRequest(readStringFromSettingFile("httpFileServerURL")+serverPath+fileName);
 		if(payload!="--==error==--"){
 			SPIFFS.remove(fileName);
 			File nf=SPIFFS.open(fileName,"w");
@@ -942,7 +942,10 @@ void espSetup(){
 	addConfigParameter(F("automaticUpdateCheckInterval"),F("Interval for check of new firmware in hours"),F("24"),MainConfigPage,false,3);
 	addConfigParameter(F("nextFirmwareCheckTime"),F("Next time to check for new firmware"),F("197101010000"),MainConfigPage,false,4);
 	addConfigParameter(F("registerDevice"),F("Register device on boot (n=no, other=url)"),F("http://192.168.1.180:65023/domoticz-events/register-magnatic-device.pl"),MainConfigPage,false,3);
+	addConfigParameter(F("httpFileServerURL"),F("URL of http file server"),F("http://192.168.1.180/magnaticDevices"),MainConfigPage,false,3);
+	addConfigParameter(F("httpDebugServerURL"),F("URL of http debug server"),F("http://192.168.1.180:65023/rpss/rpss_service.pl?what=espdebug&line="),MainConfigPage,false,3);
 	
+	magnaticDeviceServerURL=readStringFromSettingFile("httpFileServerURL");
 	magnaticDeviceServerURL=readStringFromSettingFile("magnaticDeviceServerURL");
 	
 	addExposedVariable(F("magnaticDeviceType"),F("S"),(void*)&magnaticDeviceType);
