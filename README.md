@@ -159,7 +159,7 @@ There is some housekeeping to be done when using this library. This is all done 
 `<TBD>`
 
 # Other useful functions
-##URLEncode
+## URLEncode
 URLEncode encodes a string for safe use as an URL
 
 String URLEncode(String str)
@@ -169,55 +169,55 @@ readStringFromSettingFile retrieves a configuration value from the setting file
 
 String readStringFromSettingFile(String configName)
 
-##readCharArrayFromSettingFile
+## readCharArrayFromSettingFile
 readCharArrayFromSettingFile retrieves a character array from the setting file
 
 void readCharArrayFromSettingFile(char (&array)[32], String configName)
 
-##readFloatFromSettingFile
+## readFloatFromSettingFile
 float readFloatFromSettingFile(String configName)
 
-##readIntFromSettingFile
+## readIntFromSettingFile
 int readIntFromSettingFile(String configName)
 
 ##writeStringToSettingFile
 void writeStringToSettingFile(String settingName, String settingValue)
 
-##serverArgument
-When handling a http-request received by the ESP this function can be used to directly access an argument passed to the server.
-
-For example: The request received is /config?paramName=test&paramValue=testValue
-
-writeStringToSettingFile(serverArgument("test"), serverArgument("testValue"))
-
-##daysInMonth
-Returns the number of days in a given month.
-
-int daysInMonth(int month, int year)
-
-##leapYear
-Returns whether or not a year is a leap year.
-
-bool leapYear(int year)
-
-##writeToLog
+## writeToLog
 The device has a local logfile esp.log. You can add lines to it with this function. The log is rolled over when it grows bigger than 16 kB. One previous log file is retained as esp.log.1
 
 void writeToLog(String line)
 
-##getPayLoadFromHTTPRequest
+## serverArgument
+When handling a http-request received by the ESP this function can be used to directly access an argument passed to the server.
+
+For example: The GET-request received is /config?paramName=test&paramValue=testValue (POST is also supported)
+
+writeToLog(serverArgument("test")+"="+serverArgument("testValue"))
+
+## daysInMonth
+Returns the number of days in a given month.
+
+int daysInMonth(int month, int year)
+
+## leapYear
+Returns whether or not a year is a leap year.
+
+bool leapYear(int year)
+
+## getPayLoadFromHTTPRequest
 Performs a http-request to the URL provided and returns the result. If an error occurs it returns the errorcode and possible server response.
 
 String getPayloadFromHttpRequest(String url)
 
-##fuzzy
+## fuzzy
 When multiple devices are sending information with the same interval, this function can help spread the load.
 
 unsigned long fuzzy(unsigned long duration, unsigned long fuzz);
 
 For example: fuzzy(10000,100) will return a random value between 9900 and 10100
 
-##getFileFromServer
+## getFileFromServer
 Retrieves a file from a http-server and saves it to SPIFFS if the file-size provided differs from the file-size on SPIFFS.
 
 void getFileFromServer(String fileName, String serverPath, int fileSizeExpected)
