@@ -8,6 +8,7 @@ Turn your ESP into a light-weight server with the following functionalities:
 * OTA (automatic, web-based and/or ArduinoOTA)
 * mDNS-publication of name and ArduinoOTA-service
 * Light-weight template-engine that allows you to use configuration-items as variables, easily expose c++-variables for usage in templates and make HTML-lines optional
+* Easy to use logging and debugging options
 
 For deployment on an ESP8266 you'll need the following libraries:
 * ESP8266WiFi
