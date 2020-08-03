@@ -6,7 +6,7 @@ Turn your ESP into a light-weight server with the following functionalities:
 * FTP-server
 * NTP-client
 * Separate configuration pages for users, super-users and administrators, all protected by basic-authentication
-* OTA (web-based and ArduinoOTA)
+* OTA (automatic, web-based and/or ArduinoOTA)
 * mDNS-publication of name and OTA-service
 * Light-weight template-engine that allows you to use configuration-items as variables and easily expose c++-variables for usage in templates
 
