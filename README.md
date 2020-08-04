@@ -34,7 +34,7 @@ Both need:
 * ezTime
 
 ## First deployment
-Connect the ESP to your machine and use the Arduino-IDE to compile and upload using the serial connection. After that you can use Arduino-OTA.
+Connect the ESP to your machine and use the Arduino-IDE to compile and upload using the serial connection. After that you can use Arduino-OTA. The library will work on a ESP8266 with 1 MByte where 128 kByte is assigned to SPIFFS. For 4 MByte versions 2 MByte can be assigned to SPIFFS.
 
 After the first deployment to your ESP, the ESP will reboot and search for a known SSID. When the default SSID "YourSSID" is not found, the ESP will revert to SoftAP-mode. The default name of that SSID will be "Magnatic-unconfigured-[MAC-ADDRESS]" with a default password "espadmin".
 
